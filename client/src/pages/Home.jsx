@@ -52,16 +52,16 @@ export default function Home() {
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-slate-500'>perfect</span>
           <br />
-          place with ease
+        destination with ease
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-          Sahand Estate is the best place to find your next perfect place to
+          Hideout is the best place to find your next perfect touring destination to
           live.
           <br />
-          We have a wide range of properties for you to choose from.
+          We have a wide range of significant and undiscovered places for you to choose from.
         </div>
         <Link
-          to={'/search'}
+          to={'/about'}
           className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
         >
           Let's get started...
