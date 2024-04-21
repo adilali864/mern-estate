@@ -1,49 +1,61 @@
 import mongoose from 'mongoose';
 
-const listingSchema = new mongoose.Schema(
+const laundrySchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    description: {
+    enrollment: {
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    regularPrice: {
+    phone: {
       type: Number,
       required: true,
     },
-    discountPrice: {
+    tshirts: {
       type: Number,
       required: true,
     },
-    bathrooms: {
+    shirts: {
       type: Number,
       required: true,
     },
-    bedrooms: {
+    pants: {
       type: Number,
       required: true,
     },
-    furnished: {
-      type: Boolean,
+    bedsheets: {
+      type: Number,
       required: true,
     },
-    parking: {
-      type: Boolean,
+    lowers: {
+      type: Number,
       required: true,
     },
-    type: {
-      type: String,
+    shorts: {
+        type: Number,
+        required: true,
+    },
+    towel: {
+        type: Number,
+        required: true,
+    },
+    pillowcover: {
+      type:  Number,
       required: true,
     },
-    offer: {
-      type: Boolean,
+    kurta: {
+      type: Number,
+      required: true,
+    },
+    pajama: {
+      type: Number,
+      required: true,
+    },
+    dupatta: {
+      type: Number,
       required: true,
     },
     imageUrls: {
@@ -58,6 +70,6 @@ const listingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Listing = mongoose.model('Listing', listingSchema);
+const LaundryListing = mongoose.model('Listing', laundrySchema);
 
-export default Listing;
+export default LaundryListing;

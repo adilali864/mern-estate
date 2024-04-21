@@ -17,7 +17,7 @@ export default function CreateListing() {
   const [formData, setFormData] = useState({
     imageUrls: [],
     name: '',
-    enrollment: '',
+    enrollmentId: '',
     phone: '',
     tshirts: 0,
     shirts: 0,
@@ -30,7 +30,6 @@ export default function CreateListing() {
     kurta: 0,
     pajama: 0,
     dupatta: 0,
-    userRef: currentUser._id,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -99,11 +98,10 @@ export default function CreateListing() {
 
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
-    
+  
     if (type === 'checkbox') {
       setFormData({ ...formData, [id]: checked });
     } else {
-      // Change 'id' to 'enrollmentId' here
       setFormData({ ...formData, [id]: value });
     }
   };
@@ -115,7 +113,7 @@ export default function CreateListing() {
         <View style={styles.section}>
           <Text style={styles.title}>Laundry Service Slip</Text>
           <Text style={styles.text}>Name: {formData.name}</Text>
-          <Text style={styles.text}>Enrollment ID: {formData.enrollment}</Text>
+          <Text style={styles.text}>Enrollment ID: {formData.enrollmentId}</Text>
           <Text style={styles.text}>Phone: {formData.phone}</Text>
           <Text style={styles.title}>Clothes</Text>
           {Object.entries(formData).map(([key, value]) => {
@@ -143,7 +141,7 @@ export default function CreateListing() {
   
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/laundry/create', {
+      const res = await fetch('/api/laundry-listing/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -193,10 +191,10 @@ export default function CreateListing() {
             type='text'
             placeholder='Enrollment ID'
             className='border p-3 rounded-lg'
-            id='enrollment'
+            id='enrollmentId'
             required
             onChange={handleChange}
-            value={formData.enrollment}
+            value={formData.enrollmentId}
           />
           <input
             type='number'
@@ -208,151 +206,9 @@ export default function CreateListing() {
             value={formData.phone}
           />
           <div className='flex flex-wrap gap-6'>
-          <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='tshirts'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.tshirts}
-              />
-              <p>t-shirts</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='shirts'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.shirts}
-              />
-              <p>shirts</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='pants'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.pants}
-              />
-              <p>pants</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='bedsheets'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.bedsheets}
-              />
-              <p>bedsheets</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='lowers'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.lowers}
-              />
-              <p>lowers</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='shorts'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.shorts}
-              />
-              <p>shorts</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='towel'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.towel}
-              />
-              <p>towel</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='pillowcover'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.pillowcover}
-              />
-              <p>pillowcover</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='kurta'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.kurta}
-              />
-              <p>kurta</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='pajama'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.pajama}
-              />
-              <p>pajama</p>
-            </div>
-            <div className='flex items-center gap-2'>
-              <input
-                type='number'
-                id='dupatta'
-                min='1'
-                max='10'
-                required
-                className='p-3 border border-gray-300 rounded-lg'
-                onChange={handleChange}
-                value={formData.dupatta}
-              />
-              <p>dupatta</p>
-            </div>
+            {/* Other input fields for clothes */}
           </div>
-          </div>
+        </div>
         <div className='flex flex-col flex-1 gap-4'>
           <p className='font-semibold'>
             Images:
@@ -424,23 +280,19 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
     padding: 20,
-    backgroundColor: '#ffffff', // Set a background color
   },
   section: {
-    marginVertical: 20, // Increase vertical margin for sections
-    paddingHorizontal: 20, // Add horizontal padding
+    margin: 10,
+    padding: 10,
     flexGrow: 1,
   },
   title: {
-    fontSize: 24, // Increase font size for titles
-    marginBottom: 15,
+    fontSize: 20,
+    marginBottom: 10,
     fontWeight: 'bold',
-    color: '#000000', // Darken the color for better contrast
   },
   text: {
-    fontSize: 14, // Increase font size for regular text
-    marginBottom: 10,
-    color: '#000000', // Slightly darken the color for better readability
+    fontSize: 12,
+    marginBottom: 5,
   },
-}); 
-
+});
